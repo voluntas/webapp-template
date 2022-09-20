@@ -1,0 +1,9 @@
+-- ここは適当に変えること
+
+CREATE TABLE account (
+    pk INTEGER PRIMARY KEY AUTOINCREMENT,
+
+    display_name TEXT NOT NULL,
+
+    created_at TIMESTAMP DEFAULT CURRENT_TIMESTAMP NOT NULL
+);

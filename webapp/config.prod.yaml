@@ -1,0 +1,16 @@
+debug: false
+server_ip_address: 127.0.0.1
+server_port: 5000
+
+exporter_ip_address: 127.0.0.1
+exporter_port: 9370
+
+sqlite3_url: webapp.db
+
+skip_basic_auth: false
+basic_auth_username: webapp
+basic_auth_password: bjXcigJQAuaGZ-CZ744foCPCcn2@JQTfW@9DrztCP362FUW3iWcQU4CdoUZ9
+
+log_dir: .
+log_name: webapp.jsonl
+log_stdout: false

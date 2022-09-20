@@ -1,0 +1,33 @@
+name = "webapp-admin"
+
+main = "./build/index.js"
+
+usage_model = "bundled"
+
+workers_dev = false
+
+compatibility_date = "2022-09-20"
+
+[vars]
+ENVIRONMENT = "development"
+
+BASIC_AUTH_USERNAME = "webapp"
+BASIC_AUTH_PASSWORD = "webapp"
+
+[env.production]
+
+routes = [
+	{ pattern = "webapp-admin.example.com", custom_domain = true }
+]
+
+[env.production.vars]
+ENVIRONMENT = "production"
+
+BASIC_AUTH_USERNAME = "webapp"
+BASIC_AUTH_PASSWORD = "bjXcigJQAuaGZ-CZ744foCPCcn2@JQTfW@9DrztCP362FUW3iWcQU4CdoUZ9"
+
+[site]
+bucket = "./public"
+
+[build]
+command = "npm run build"
