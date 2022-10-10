@@ -54,6 +54,11 @@ TBD
 - Cloudflare Workers
 - Remix
 
+## 別バージョン
+
+- [voluntas/webapp\-sqlite\-template](https://github.com/voluntas/webapp-sqlite-template)
+    - メンテナンス優先度低め SQLite 利用バージョン
+
 ## LICENSE
 
 
