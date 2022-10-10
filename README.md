@@ -9,7 +9,6 @@
 
 - [ ] webapp-console 追加
 - [ ] webapp-admin 追加
-- [ ] TimescaleDB を選択可能にする
 - [ ] Meilisearch 追加
 - [ ] .devcontainer 化
 - [ ] Fluent Bit 追加
@@ -29,12 +28,12 @@ require (
 	github.com/go-playground/validator/v10 v10.11.1
 	github.com/goccy/go-yaml v1.9.5
 	github.com/golang-migrate/migrate/v4 v4.15.2
+	github.com/jackc/pgx/v4 v4.17.2
 	github.com/labstack/echo-contrib v0.13.0
 	github.com/labstack/echo/v4 v4.9.0
-	github.com/mattn/go-sqlite3 v1.14.15
 	github.com/rs/zerolog v1.28.0
 	github.com/shiguredo/lumberjack/v3 v3.0.0
-	golang.org/x/sync v0.0.0-20220907140024-f12130a52804
+	golang.org/x/sync v0.0.0-20220929204114-8fcdb60fdcc0
 )
 ```
 
