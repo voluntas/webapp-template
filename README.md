@@ -16,7 +16,12 @@
 
 ## webapp
 
-- データベースに TimescaleDB を利用
+- ウェブフレームワークに Echo を採用
+- データベースに TimescaleDB を採用
+- データベースドライバーに pgx を採用
+- データベースクエリーに sqlc を採用
+- データベースマイグレーションに go-migrate を採用
+- ログに Zerolog を採用
 - SQL から sqlc で Go 生成して、あとは API として返すだけ
     - 方針として JSON はまるっと返す
     - Remix 側でフィルタリングする
