@@ -6,8 +6,6 @@ import (
 	"log"
 	"os"
 
-	_ "github.com/mattn/go-sqlite3"
-
 	"github.com/voluntas/webapp"
 	"golang.org/x/sync/errgroup"
 )
@@ -47,13 +45,13 @@ func main() {
 		log.Fatal("cannot parse config file, err=", err)
 	}
 
-	conn, err := webapp.NewConn(config)
+	pool, err := webapp.NewPool(config.PostgresURL)
 	if err != nil {
 		log.Fatal("cannot create server:", err)
 	}
-	defer conn.Close()
+	defer pool.Close()
 
-	server, err := webapp.NewServer(revision, config, conn)
+	server, err := webapp.NewServer(revision, config, pool)
 	if err != nil {
 		log.Fatal("cannot create server:", err)
 	}

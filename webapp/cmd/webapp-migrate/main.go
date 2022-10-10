@@ -5,18 +5,17 @@ import (
 	"log"
 
 	"github.com/golang-migrate/migrate/v4"
-	"github.com/golang-migrate/migrate/v4/database/sqlite3"
+	"github.com/golang-migrate/migrate/v4/database/pgx"
 	_ "github.com/golang-migrate/migrate/v4/source/file"
-	_ "github.com/mattn/go-sqlite3"
 	"github.com/voluntas/webapp"
 )
 
 func main() {
-	db, err := sql.Open("sqlite3", webapp.SQLITE_PATH)
+	db, err := sql.Open("pgx", webapp.SQLITE_PATH)
 	if err != nil {
 		log.Fatal("")
 	}
-	driver, err := sqlite3.WithInstance(db, &sqlite3.Config{})
+	driver, err := pgx.WithInstance(db, &pgx.Config{})
 	if err != nil {
 		log.Fatal("")
 	}
@@ -24,7 +23,7 @@ func main() {
 	m, err := migrate.NewWithDatabaseInstance(
 		// フォルダが固定なので固定でイイ
 		"file://./db/schema",
-		"sqlite3", driver)
+		"pgx", driver)
 	if err != nil {
 		log.Fatal("")
 	}

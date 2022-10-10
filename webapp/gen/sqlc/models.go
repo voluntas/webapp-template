@@ -9,7 +9,7 @@ import (
 )
 
 type Account struct {
-	Pk          int64     `json:"pk"`
+	Pk          int32     `json:"pk"`
 	DisplayName string    `json:"display_name"`
 	CreatedAt   time.Time `json:"created_at"`
 }

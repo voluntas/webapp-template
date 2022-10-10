@@ -14,7 +14,7 @@ SELECT pk, display_name, created_at FROM account
 `
 
 func (q *Queries) ListAccounts(ctx context.Context) ([]Account, error) {
-	rows, err := q.db.QueryContext(ctx, listAccounts)
+	rows, err := q.db.Query(ctx, listAccounts)
 	if err != nil {
 		return nil, err
 	}
@@ -26,9 +26,6 @@ func (q *Queries) ListAccounts(ctx context.Context) ([]Account, error) {
 			return nil, err
 		}
 		items = append(items, i)
-	}
-	if err := rows.Close(); err != nil {
-		return nil, err
 	}
 	if err := rows.Err(); err != nil {
 		return nil, err

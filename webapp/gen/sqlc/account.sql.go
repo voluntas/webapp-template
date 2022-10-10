@@ -13,11 +13,11 @@ const createAccount = `-- name: CreateAccount :exec
 INSERT INTO account (
     display_name
 ) VALUES (
-    @display_name
+    $1
 )
 `
 
 func (q *Queries) CreateAccount(ctx context.Context, displayName string) error {
-	_, err := q.db.ExecContext(ctx, createAccount, displayName)
+	_, err := q.db.Exec(ctx, createAccount, displayName)
 	return err
 }

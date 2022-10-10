@@ -5,10 +5,11 @@ server_port: 5000
 exporter_ip_address: 127.0.0.1
 exporter_port: 9370
 
-sqlite3_url: webapp.db
+postgres_url: postgres://postgres:password@127.0.0.1:5432/prod?sslmode=require
 
 skip_basic_auth: false
 basic_auth_username: webapp
+# パスワードは変更すること
 basic_auth_password: bjXcigJQAuaGZ-CZ744foCPCcn2@JQTfW@9DrztCP362FUW3iWcQU4CdoUZ9
 
 log_dir: .

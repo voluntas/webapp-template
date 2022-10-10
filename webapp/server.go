@@ -1,7 +1,7 @@
 package webapp
 
 import (
-	"database/sql"
+	"context"
 	"fmt"
 	"net/http"
 	"strconv"
@@ -9,12 +9,13 @@ import (
 	"time"
 
 	"github.com/go-playground/validator/v10"
+	"github.com/jackc/pgx/v4/pgxpool"
 	"github.com/labstack/echo-contrib/prometheus"
 	"github.com/labstack/echo/v4"
 	"github.com/labstack/echo/v4/middleware"
 
 	zlog "github.com/rs/zerolog/log"
-	sqlc "github.com/voluntas/webapp/gen/sqlc"
+	db "github.com/voluntas/webapp/gen/sqlc"
 )
 
 // TODO(v): 定数どうにかする
@@ -23,29 +24,35 @@ var SQLITE_PATH = "webapp.db"
 type Server struct {
 	revision string
 	config   Config
-	query    *sqlc.Queries
+	query    *db.Queries
 
 	echo         *echo.Echo
 	echoExporter *echo.Echo
 }
 
-// ここでデータベース接続したままにする
-func NewConn(_ Config) (*sql.DB, error) {
-	db, err := sql.Open("sqlite3", SQLITE_PATH)
+func NewPool(connStr string) (*pgxpool.Pool, error) {
+	config, err := pgxpool.ParseConfig(connStr)
 	if err != nil {
 		return nil, err
 	}
-	if err := db.Ping(); err != nil {
+
+	pool, err := pgxpool.ConnectConfig(context.Background(), config)
+	if err != nil {
 		return nil, err
 	}
-	return db, nil
+
+	if err := pool.Ping(context.Background()); err != nil {
+		return nil, err
+	}
+
+	return pool, nil
 }
 
-func NewServer(r string, c Config, conn *sql.DB) (*Server, error) {
+func NewServer(r string, c Config, pool *pgxpool.Pool) (*Server, error) {
 	server := &Server{
 		revision: r,
 		config:   c,
-		query:    sqlc.New(conn),
+		query:    db.New(pool),
 	}
 
 	server.setupEcho()

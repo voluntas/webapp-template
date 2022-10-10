@@ -13,6 +13,8 @@ type Config struct {
 	ExporterIPAddress string `yaml:"exporter_ip_address"`
 	ExporterPort      int    `yaml:"exporter_port"`
 
+	PostgresURL string `yaml:"postgres_url"`
+
 	Https          bool   `yaml:"https"`
 	CetificatePath string `yaml:"certificate_path"`
 	PrivateKeyPath string `yaml:"private_key_path"`
