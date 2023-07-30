@@ -16,9 +16,7 @@ BASIC_AUTH_PASSWORD = "webapp"
 
 [env.production]
 
-routes = [
-	{ pattern = "webapp-console.example.com", custom_domain = true }
-]
+routes = [{ pattern = "webapp-console.example.com", custom_domain = true }]
 
 [env.production.vars]
 ENVIRONMENT = "production"
@@ -30,4 +28,4 @@ BASIC_AUTH_PASSWORD = "bjXcigJQAuaGZ-CZ744foCPCcn2@JQTfW@9DrztCP362FUW3iWcQU4Cdo
 bucket = "./public"
 
 [build]
-command = "npm run build"
+command = "pnpm run build"
